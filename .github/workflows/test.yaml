@@ -21,14 +21,3 @@ jobs:
       - name: Echo
         run: echo "test"
 
-      - name: Merge pull request if packages.json is okay.
-        if: success()
-        uses: actions/github-script@v7.0.1
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.rest.pulls.merge({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number
-            })
